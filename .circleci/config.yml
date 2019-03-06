@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: pre 
-          command: apt-get update && apt-get install -y autoconf automake libtool autoconf make gcc
+          command: apt-get update && apt-get install -y autoconf automake libtool autoconf make gcc python-sphinx
       - run:
           name: bootstrap
           command: ./bootstrap.sh
@@ -17,6 +17,9 @@ jobs:
       - run:
           name: build
           command: make 
+      - run:
+          name: build docs
+          command: cd docs; make html; cd -
       - run:
           name: install
           command: make install
